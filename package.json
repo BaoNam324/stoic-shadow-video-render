@@ -1,0 +1,12 @@
+{
+  "name": "stoic-shadow-video-render",
+  "version": "1.0.0",
+  "description": "HyperFrames Cloud Renderer for Stoic Shadow",
+  "main": "index.html",
+  "scripts": {
+    "render": "hyperframes render"
+  },
+  "dependencies": {
+    "hyperframes": "^0.1.0"
+  }
+}

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Stoic Shadow Shorts</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: #09090b;
+      font-family: 'Montserrat', sans-serif;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      width: 100vw;
+    }
+    #stage {
+      position: relative;
+      width: 1080px;
+      height: 1920px;
+      background: #09090b;
+      overflow: hidden;
+    }
+
+    /* Background Atmospheric Gradients */
+    .bg-gradient {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 40%, rgba(245, 158, 11, 0.12) 0%, rgba(9, 9, 11, 0.95) 75%);
+      z-index: 1;
+    }
+
+    /* Film Vignette & Texture */
+    .vignette {
+      position: absolute;
+      inset: 0;
+      box-shadow: inset 0 0 200px rgba(0, 0, 0, 0.9);
+      pointer-events: none;
+      z-index: 20;
+    }
+
+    /* Central Character / Marble Silhouette */
+    .visual-container {
+      position: absolute;
+      top: 15%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 900px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 2;
+    }
+
+    .statue-silhouette {
+      width: 480px;
+      height: 640px;
+      background: linear-gradient(180deg, #27272a 0%, #09090b 100%);
+      clip-path: polygon(50% 0%, 75% 15%, 85% 40%, 80% 70%, 95% 100%, 5% 100%, 20% 70%, 15% 40%, 25% 15%);
+      border-radius: 40px;
+      filter: drop-shadow(0 0 45px rgba(245, 158, 11, 0.25));
+    }
+
+    /* Kinetic Subtitles Area */
+    .caption-box {
+      position: absolute;
+      bottom: 22%;
+      left: 10%;
+      right: 10%;
+      text-align: center;
+      z-index: 10;
+    }
+
+    .caption-word {
+      font-size: 72px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #ffffff;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9);
+      line-height: 1.25;
+      display: inline-block;
+    }
+
+    .gold {
+      color: #fbbf24;
+      text-shadow: 0 0 35px rgba(245, 158, 11, 0.8), 0 4px 15px rgba(0, 0, 0, 0.9);
+    }
+
+    /* Watermark / Brand Header */
+    .brand-tag {
+      position: absolute;
+      top: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 28px;
+      letter-spacing: 6px;
+      font-weight: 700;
+      text-transform: uppercase;
+      z-index: 10;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="stage" data-composition-id="stoic-shorts-1" data-start="0" data-width="1080" data-height="1920">
+    <div class="brand-tag">STOIC SHADOW</div>
+    <div class="bg-gradient"></div>
+    <div class="vignette"></div>
+
+    <div class="visual-container">
+      <div id="hero-statue" class="statue-silhouette"></div>
+    </div>
+
+    <div class="caption-box">
+      <h1 id="caption-text" class="caption-word">
+        DON'T <span class="gold">ARGUE</span>
+      </h1>
+    </div>
+
+    <!-- Audio Track: Edge TTS Christopher Voice -->
+    <audio
+      data-start="0"
+      data-duration="37"
+      data-track-index="0"
+      data-volume="1.0"
+      src="audio.mp3"
+    ></audio>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+
+      // Subtle atmospheric breathing animation
+      tl.to("#hero-statue", {
+        scale: 1.08,
+        duration: 18,
+        ease: "power1.inOut",
+        yoyo: true,
+        repeat: 1
+      }, 0);
+
+      // Kinetic Captions Sequence synced with Voiceover
+      const captions = [
+        { time: 0, text: "WHEN SOMEONE <span class='gold'>INSULTS YOU</span>" },
+        { time: 2.2, text: "DON'T ARGUE. <span class='gold'>DO THIS</span> INSTEAD." },
+        { time: 5.5, text: "MOST PEOPLE <span class='gold'>REACT INSTANTLY</span>" },
+        { time: 7.8, text: "THEY YELL. THEY DEFEND THEMSELVES." },
+        { time: 10.5, text: "IN THAT SECOND... <span class='gold'>THEY LOSE.</span>" },
+        { time: 13.5, text: "MARCUS AURELIUS WARNED US:" },
+        { time: 16.0, text: "YOU BECOME THE <span class='gold'>SLAVE</span>" },
+        { time: 18.5, text: "OF WHOEVER MAKES YOU <span class='gold'>ANGRY</span>" },
+        { time: 21.0, text: "NEXT TIME... <span class='gold'>FREEZE.</span>" },
+        { time: 23.5, text: "LOOK THEM DEAD IN THE EYE." },
+        { time: 25.5, text: "STAY SILENT FOR <span class='gold'>3 SECONDS</span>" },
+        { time: 28.5, text: "THEN ASK CALMLY: <span class='gold'>ARE YOU OKAY?</span>" },
+        { time: 32.0, text: "CONTROL YOUR <span class='gold'>REACTION</span>" },
+        { time: 34.0, text: "CONTROL THE <span class='gold'>ROOM</span>" }
+      ];
+
+      captions.forEach(c => {
+        tl.call(() => {
+          document.getElementById("caption-text").innerHTML = c.text;
+        }, null, c.time);
+      });
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["stoic-shorts-1"] = tl;
+    </script>
+  </div>
+
+</body>
+</html>
