@@ -17,19 +17,11 @@ jobs:
         with:
           node-version: 22
 
-      - name: Install FFmpeg
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y ffmpeg
-
       - name: Install Dependencies
         run: npm install
 
-      - name: Ensure HyperFrames Engine Browser
-        run: npx hyperframes browser ensure
-
-      - name: Render Video with HyperFrames
-        run: npx hyperframes render --output dist/stoic_defense.mp4
+      - name: Render Video with HyperFrames (Docker mode)
+        run: npx hyperframes render --docker --output dist/stoic_defense.mp4
 
       - name: Upload Rendered Video
         uses: actions/upload-artifact@v4
