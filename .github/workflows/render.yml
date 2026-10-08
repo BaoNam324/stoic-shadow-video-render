@@ -17,20 +17,21 @@ jobs:
         with:
           node-version: 22
 
-      - name: Install FFmpeg
+      - name: Install FFmpeg & System Dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y ffmpeg
+          sudo apt-get install -y ffmpeg libnss3 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdrm2 libxkbcommon0 libxcomposite1 libxdamage1 libxrandr2 libgbm1 libasound2t64
 
       - name: Install Dependencies
         run: npm install
 
-      - name: Ensure Managed Chrome Headless Shell
+      - name: Install Chrome Headless Shell
         run: |
-          npx hyperframes browser ensure --force
-          BROWSER_PATH=$(npx hyperframes browser path)
-          echo "Discovered Browser Path: $BROWSER_PATH"
-          echo "HYPERFRAMES_BROWSER_PATH=$BROWSER_PATH" >> $GITHUB_ENV
+          OUTPUT=$(npx @puppeteer/browsers install chrome-headless-shell)
+          echo "$OUTPUT"
+          SHELL_PATH=$(echo "$OUTPUT" | awk '{print $2}')
+          echo "Installed chrome-headless-shell at: $SHELL_PATH"
+          echo "HYPERFRAMES_BROWSER_PATH=$SHELL_PATH" >> $GITHUB_ENV
 
       - name: Render Video with HyperFrames
         run: npx hyperframes render --output dist/stoic_defense.mp4
