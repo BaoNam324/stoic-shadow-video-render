@@ -25,8 +25,15 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Render Video with HyperFrames (Docker mode)
-        run: npx hyperframes render --docker --output dist/stoic_defense.mp4
+      - name: Ensure Managed Chrome Headless Shell
+        run: |
+          npx hyperframes browser ensure --force
+          BROWSER_PATH=$(npx hyperframes browser path)
+          echo "Discovered Browser Path: $BROWSER_PATH"
+          echo "HYPERFRAMES_BROWSER_PATH=$BROWSER_PATH" >> $GITHUB_ENV
+
+      - name: Render Video with HyperFrames
+        run: npx hyperframes render --output dist/stoic_defense.mp4
 
       - name: Upload Rendered Video
         uses: actions/upload-artifact@v4
