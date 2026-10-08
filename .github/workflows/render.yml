@@ -22,11 +22,12 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y ffmpeg
 
+      - name: Install Playwright & Chromium with OS Dependencies
+        run: |
+          npx playwright install --with-deps chromium
+
       - name: Install Dependencies
         run: npm install
-
-      - name: Install Playwright/Puppeteer Chromium with Dependencies
-        run: npx puppeteer browsers install chrome
 
       - name: Render Video with HyperFrames
         run: npx hyperframes render --output dist/stoic_defense.mp4
