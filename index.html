@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>3 Cold Rules Stoic Shadow</title>
+  <title>The 4 Paths of Pain</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
   <style>
     * {
       box-sizing: border-box;
@@ -10,7 +13,7 @@
       padding: 0;
     }
     body {
-      background-color: #09090b;
+      background-color: #050507;
       font-family: 'Montserrat', sans-serif;
       overflow: hidden;
       display: flex;
@@ -23,161 +26,265 @@
       position: relative;
       width: 1080px;
       height: 1920px;
-      background: #09090b;
+      background: #050507;
       overflow: hidden;
     }
 
-    /* Dramatic Radial Lighting */
-    .bg-gradient {
+    /* Cinematic Manga Grit Texture / Film Grain emulation */
+    .film-grain {
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 50% 38%, rgba(245, 158, 11, 0.15) 0%, rgba(9, 9, 11, 0.98) 75%);
-      z-index: 1;
+      background-image: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 4px 4px;
+      pointer-events: none;
+      z-index: 25;
+      opacity: 0.8;
     }
 
-    /* Film Vignette */
+    /* Dramatic Dark Atmosphere Gradients */
+    .ambient-glow {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 45%, rgba(220, 38, 38, 0.12) 0%, rgba(5, 5, 7, 0.98) 70%);
+      z-index: 1;
+      transition: background 0.5s ease;
+    }
+
+    /* Heavy Vignette */
     .vignette {
       position: absolute;
       inset: 0;
-      box-shadow: inset 0 0 240px rgba(0, 0, 0, 0.95);
+      box-shadow: inset 0 0 260px rgba(0, 0, 0, 0.98), inset 0 0 100px rgba(0, 0, 0, 0.9);
       pointer-events: none;
       z-index: 20;
     }
 
-    /* Brand Watermark */
-    .brand-tag {
+    /* High Brand Bar */
+    .brand-header {
       position: absolute;
-      top: 90px;
+      top: 80px;
       left: 50%;
       transform: translateX(-50%);
-      color: rgba(255, 255, 255, 0.45);
+      font-family: 'Cinzel', serif;
       font-size: 26px;
-      letter-spacing: 7px;
-      font-weight: 800;
+      letter-spacing: 12px;
+      font-weight: 900;
+      color: rgba(255, 255, 255, 0.4);
       text-transform: uppercase;
       z-index: 15;
     }
 
-    /* Center Visual Sculpture */
-    .visual-wrapper {
+    /* Center Visual - Seinen / Manga / Sculpture Silhouette */
+    .visual-stage {
       position: absolute;
-      top: 14%;
+      top: 15%;
       left: 50%;
       transform: translateX(-50%);
-      width: 820px;
-      height: 920px;
+      width: 760px;
+      height: 860px;
       display: flex;
       justify-content: center;
       align-items: center;
       z-index: 2;
     }
 
-    .sculpture {
-      width: 460px;
-      height: 620px;
-      background: linear-gradient(180deg, #27272a 0%, #111113 100%);
-      clip-path: polygon(50% 0%, 80% 18%, 88% 45%, 78% 75%, 95% 100%, 5% 100%, 22% 75%, 12% 45%, 20% 18%);
-      border-radius: 35px;
-      filter: drop-shadow(0 0 50px rgba(245, 158, 11, 0.28));
+    .hero-panel {
+      position: relative;
+      width: 440px;
+      height: 600px;
+      background: linear-gradient(180deg, #18181b 0%, #09090b 100%);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 60px rgba(0, 0, 0, 0.9);
+      clip-path: polygon(50% 0%, 85% 15%, 90% 45%, 82% 78%, 95% 100%, 5% 100%, 18% 78%, 10% 45%, 15% 15%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
-    /* Kinetic Subtitles Box */
+    .inner-glow {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 50% 30%, rgba(245, 158, 11, 0.25) 0%, transparent 70%);
+    }
+
+    /* Category Tag (e.g. THE WEAK / THE STOIC) */
+    .category-box {
+      position: absolute;
+      top: 58%;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 12;
+      text-align: center;
+      width: 90%;
+    }
+
+    .badge {
+      display: inline-block;
+      font-family: 'Cinzel', serif;
+      font-size: 32px;
+      letter-spacing: 8px;
+      font-weight: 900;
+      padding: 10px 28px;
+      text-transform: uppercase;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(8px);
+      color: #a1a1aa;
+      margin-bottom: 25px;
+    }
+
+    /* Subtitles / Philosophy Punchline */
     .caption-box {
       position: absolute;
-      bottom: 20%;
-      left: 8%;
-      right: 8%;
+      bottom: 18%;
+      left: 6%;
+      right: 6%;
       text-align: center;
       z-index: 10;
     }
 
-    .caption-text {
-      font-size: 70px;
+    .caption-main {
+      font-size: 68px;
       font-weight: 900;
       text-transform: uppercase;
-      letter-spacing: 2px;
+      letter-spacing: 1px;
       color: #ffffff;
-      text-shadow: 0 4px 22px rgba(0, 0, 0, 0.95);
       line-height: 1.25;
+      text-shadow: 0 4px 25px rgba(0, 0, 0, 0.98);
       display: inline-block;
     }
 
+    /* Colors */
     .gold {
-      color: #fbbf24;
-      text-shadow: 0 0 38px rgba(245, 158, 11, 0.85), 0 4px 16px rgba(0, 0, 0, 0.95);
+      color: #f59e0b;
+      text-shadow: 0 0 45px rgba(245, 158, 11, 0.9), 0 4px 18px rgba(0, 0, 0, 0.95);
     }
-
     .red {
       color: #ef4444;
-      text-shadow: 0 0 38px rgba(239, 68, 68, 0.85), 0 4px 16px rgba(0, 0, 0, 0.95);
+      text-shadow: 0 0 45px rgba(239, 68, 68, 0.9), 0 4px 18px rgba(0, 0, 0, 0.95);
+    }
+    .purple {
+      color: #a855f7;
+      text-shadow: 0 0 45px rgba(168, 85, 247, 0.9), 0 4px 18px rgba(0, 0, 0, 0.95);
+    }
+    .cyan {
+      color: #38bdf8;
+      text-shadow: 0 0 45px rgba(56, 189, 248, 0.9), 0 4px 18px rgba(0, 0, 0, 0.95);
+    }
+
+    /* Bottom Hook Sub-bar */
+    .cta-sub {
+      position: absolute;
+      bottom: 70px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 24px;
+      letter-spacing: 5px;
+      color: rgba(255, 255, 255, 0.35);
+      font-weight: 800;
+      text-transform: uppercase;
+      z-index: 15;
     }
   </style>
 </head>
 <body>
 
-  <div id="stage" data-composition-id="cold-rules-shorts" data-start="0" data-width="1080" data-height="1920">
-    <div class="brand-tag">STOIC SHADOW</div>
-    <div class="bg-gradient"></div>
+  <div id="stage" data-composition-id="paths-of-pain" data-start="0" data-width="1080" data-height="1920">
+    <div class="brand-header">STOIC SHADOW</div>
+    <div class="ambient-glow" id="glow-bg"></div>
     <div class="vignette"></div>
+    <div class="film-grain"></div>
 
-    <div class="visual-wrapper">
-      <div id="hero-statue" class="sculpture"></div>
+    <div class="visual-stage">
+      <div id="character-silhouette" class="hero-panel">
+        <div class="inner-glow" id="silhouette-glow"></div>
+      </div>
+    </div>
+
+    <div class="category-box">
+      <div id="badge-title" class="badge">WHEN PAIN HITS</div>
     </div>
 
     <div class="caption-box">
-      <h1 id="caption-target" class="caption-text">
-        3 <span class="gold">COLD RULES</span>
+      <h1 id="caption-text" class="caption-main">
+        FOUR MEN WALK <span class="red">FOUR PATHS</span>
       </h1>
     </div>
 
+    <div class="cta-sub">STAY THREE STEPS AHEAD</div>
+
     <audio
-      id="main-voiceover"
+      id="voice-track"
       data-start="0"
-      data-duration="38"
+      data-duration="15"
       data-track-index="0"
       data-volume="1.0"
-      src="audio_cold_rules.mp3"
+      src="audio_paths_of_pain.mp3"
     ></audio>
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
     <script>
       const tl = gsap.timeline({ paused: true });
 
-      // Breathing statue scale
-      tl.to("#hero-statue", {
-        scale: 1.07,
-        duration: 19,
-        ease: "power1.inOut",
-        yoyo: true,
-        repeat: 1
+      // Slow dynamic zoom on the character
+      tl.to("#character-silhouette", {
+        scale: 1.12,
+        duration: 15,
+        ease: "none"
       }, 0);
 
-      // Kinetic Synced Captions
-      const timelineData = [
-        { time: 0, text: "ADOPT THESE <span class='gold'>3 COLD RULES</span>" },
-        { time: 2.8, text: "IF YOU WANT <span class='gold'>INSTANT RESPECT</span>" },
-        { time: 5.5, text: "RULE 1: NEVER LAUGH AT <span class='red'>DISRESPECT</span>" },
-        { time: 9.0, text: "WHEN THEY MAKE A JOKE ABOUT YOU..." },
-        { time: 11.5, text: "DON'T SMILE TO BE <span class='gold'>POLITE</span>" },
-        { time: 14.0, text: "STARE AT THEM <span class='gold'>SILENTLY</span>" },
-        { time: 16.5, text: "UNTIL THE ROOM GOES <span class='red'>UNCOMFORTABLE</span>" },
-        { time: 19.5, text: "RULE 2: SPEAK <span class='gold'>20% SLOWER</span>" },
-        { time: 23.0, text: "INSECURE PEOPLE <span class='red'>RUSH WORDS</span>" },
-        { time: 25.5, text: "POWERFUL PEOPLE <span class='gold'>CONTROL SILENCE</span>" },
-        { time: 28.5, text: "RULE 3: WALK AWAY <span class='gold'>WITHOUT CLOSURE</span>" },
-        { time: 31.8, text: "IF THEY BETRAY YOU... NEVER EXPLAIN" },
-        { time: 34.0, text: "SILENCE IS THE LOUDEST <span class='red'>EXECUTION</span>" },
-        { time: 36.5, text: "FULL 7 LAWS ➔ <span class='gold'>LINK IN BIO</span>" }
+      // Pacing Breakdown synced with Christopher Voice
+      // Total length: ~14.5s
+      const steps = [
+        {
+          time: 0,
+          badge: "REALITY CHECK",
+          caption: "WHEN PAIN HITS...<br><span class='red'>FOUR PATHS</span> EXIST",
+          glow: "radial-gradient(circle at 50% 45%, rgba(220, 38, 38, 0.15) 0%, rgba(5, 5, 7, 0.98) 70%)"
+        },
+        {
+          time: 2.8,
+          badge: "I. THE WEAK",
+          caption: "BLAMES <span class='red'>THE WORLD</span>",
+          glow: "radial-gradient(circle at 50% 45%, rgba(239, 68, 68, 0.22) 0%, rgba(5, 5, 7, 0.98) 70%)"
+        },
+        {
+          time: 5.2,
+          badge: "II. THE NIHILIST",
+          caption: "SURRENDERS TO <span class='purple'>NOTHINGNESS</span>",
+          glow: "radial-gradient(circle at 50% 45%, rgba(168, 85, 247, 0.22) 0%, rgba(5, 5, 7, 0.98) 70%)"
+        },
+        {
+          time: 7.8,
+          badge: "III. THE CYNIC",
+          caption: "MOCKS <span class='cyan'>EVERYTHING</span>",
+          glow: "radial-gradient(circle at 50% 45%, rgba(56, 189, 248, 0.22) 0%, rgba(5, 5, 7, 0.98) 70%)"
+        },
+        {
+          time: 9.8,
+          badge: "IV. THE STOIC",
+          caption: "CONVERTS PAIN INTO <span class='gold'>POWER</span>",
+          glow: "radial-gradient(circle at 50% 45%, rgba(245, 158, 11, 0.3) 0%, rgba(5, 5, 7, 0.98) 70%)"
+        },
+        {
+          time: 12.5,
+          badge: "THE QUESTION",
+          caption: "WHICH PATH ARE <span class='gold'>YOU WALKING?</span>",
+          glow: "radial-gradient(circle at 50% 45%, rgba(245, 158, 11, 0.25) 0%, rgba(5, 5, 7, 0.98) 70%)"
+        }
       ];
 
-      timelineData.forEach(item => {
+      steps.forEach(s => {
         tl.call(() => {
-          document.getElementById("caption-target").innerHTML = item.text;
-        }, null, item.time);
+          document.getElementById("badge-title").innerText = s.badge;
+          document.getElementById("caption-text").innerHTML = s.caption;
+          document.getElementById("glow-bg").style.background = s.glow;
+        }, null, s.time);
       });
 
       window.__timelines = window.__timelines || {};
-      window.__timelines["cold-rules-shorts"] = tl;
+      window.__timelines["paths-of-pain"] = tl;
     </script>
   </div>
 
