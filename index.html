@@ -33,7 +33,7 @@
       position: absolute;
       inset: 0;
       pointer-events: none;
-      z-index: 40;
+      z-index: 50;
       background-image: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.035) 1px, transparent 1px);
       background-size: 4px 4px;
       opacity: 0.8;
@@ -45,20 +45,11 @@
       position: absolute;
       inset: 0;
       pointer-events: none;
-      z-index: 30;
-      background: radial-gradient(circle at 50% 40%, transparent 25%, rgba(7, 7, 6, 0.88) 75%, #070706 100%);
+      z-index: 40;
+      background: radial-gradient(circle at 50% 45%, transparent 20%, rgba(7, 7, 6, 0.85) 75%, #070706 100%);
     }
 
-    /* Ambient Subtle Volumetric Glow */
-    .ambient-glow {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      z-index: 1;
-      background: radial-gradient(circle at 50% 35%, rgba(197, 160, 89, 0.08) 0%, transparent 70%);
-    }
-
-    /* Red Accent Bar Left Edge */
+    /* Gold Edge Bar */
     .accent-bar {
       position: absolute;
       left: 0;
@@ -66,18 +57,18 @@
       bottom: 0;
       width: 8px;
       background: #C5A059;
-      z-index: 35;
-      opacity: 0.8;
+      z-index: 45;
+      opacity: 0.85;
     }
 
-    /* Persistent HUD Header (Archival Dossier) */
+    /* Minimalist Archival Header */
     .hud {
       position: absolute;
       font-family: 'Space Mono', monospace;
       font-size: 20px;
       letter-spacing: 4px;
-      color: rgba(234, 229, 220, 0.45);
-      z-index: 35;
+      color: rgba(234, 229, 220, 0.5);
+      z-index: 45;
       text-transform: uppercase;
     }
     .hud.tl {
@@ -98,275 +89,199 @@
       top: 90px;
       right: 70px;
       color: #8F1D1D;
-      letter-spacing: 3px;
-    }
-    .hud.bl {
-      bottom: 90px;
-      left: 70px;
-      font-size: 18px;
-      letter-spacing: 4px;
-    }
-    .hud.br {
-      bottom: 90px;
-      right: 70px;
-      font-size: 18px;
-      color: #C5A059;
-      letter-spacing: 3px;
     }
 
-    /* Generic Scene Container */
-    .scene {
+    /* Visual Background Layer with Parallax Ken Burns */
+    .broll-layer {
+      position: absolute;
+      inset: -5%;
+      width: 110%;
+      height: 110%;
+      z-index: 2;
+      opacity: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .broll-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(85%) contrast(140%) brightness(55%);
+      mix-blend-mode: luminosity;
+    }
+
+    /* Scene Container */
+    .scene-content {
       position: absolute;
       inset: 0;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 0 75px;
-      z-index: 10;
+      padding: 0 80px;
+      z-index: 20;
       opacity: 0;
     }
 
-    .kicker {
-      font-family: 'Space Mono', monospace;
-      font-size: 24px;
-      letter-spacing: 8px;
-      color: #C5A059;
-      text-transform: uppercase;
-      margin-bottom: 30px;
+    /* SVG Infographics */
+    .svg-container {
+      width: 320px;
+      height: 320px;
+      margin: 30px 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .divider {
       width: 120px;
       height: 3px;
       background: #C5A059;
-      margin: 36px auto;
+      margin: 30px auto;
       box-shadow: 0 0 20px rgba(197, 160, 89, 0.6);
     }
-
     .divider.red {
       background: #8F1D1D;
       box-shadow: 0 0 20px rgba(143, 29, 29, 0.6);
     }
 
-    /* Typography Colors */
-    .gold {
-      color: #C5A059;
-      text-shadow: 0 0 40px rgba(197, 160, 89, 0.4);
-    }
-    .crimson {
-      color: #8F1D1D;
-      text-shadow: 0 0 40px rgba(143, 29, 29, 0.5);
-    }
-    .parchment {
-      color: #EAE5DC;
-    }
-
-    /* SCENE 1: HOOK (0s - 4.8s) */
-    #scene-1 .title-hook {
+    /* Typography */
+    .headline-main {
       font-family: 'Cinzel', serif;
-      font-size: 92px;
+      font-size: 88px;
       font-weight: 900;
       line-height: 1.1;
       text-align: center;
       text-transform: uppercase;
       letter-spacing: 2px;
+      text-shadow: 0 4px 30px rgba(0, 0, 0, 0.95);
     }
-    #scene-1 .punch-hook {
+    .headline-danger {
       font-family: 'Cinzel', serif;
-      font-size: 110px;
+      font-size: 104px;
       font-weight: 900;
       text-align: center;
       text-transform: uppercase;
-      letter-spacing: 4px;
       color: #8F1D1D;
       text-shadow: 0 0 50px rgba(143, 29, 29, 0.7);
     }
-
-    /* SCENE 2: BEAT 1 (4.8s - 17.5s) */
-    #scene-2 .roman-badge {
-      font-family: 'Space Mono', monospace;
-      font-size: 22px;
-      letter-spacing: 6px;
+    .gold {
       color: #C5A059;
-      border: 1.5px solid rgba(197, 160, 89, 0.4);
-      padding: 10px 28px;
-      border-radius: 999px;
-      margin-bottom: 35px;
+      text-shadow: 0 0 40px rgba(197, 160, 89, 0.5);
     }
-    #scene-2 .emperor-title {
-      font-family: 'Cinzel', serif;
-      font-size: 82px;
-      font-weight: 900;
-      line-height: 1.15;
-      text-align: center;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-    }
-    #scene-2 .emperor-sub {
+
+    .subtext {
       font-family: 'Space Mono', monospace;
-      font-size: 30px;
-      letter-spacing: 4px;
+      font-size: 28px;
+      letter-spacing: 3px;
+      color: rgba(234, 229, 220, 0.8);
       text-align: center;
-      color: rgba(234, 229, 220, 0.75);
       line-height: 1.6;
-      margin-top: 25px;
-    }
-    #scene-2 .truth-tag {
-      font-family: 'Cinzel', serif;
-      font-size: 56px;
-      font-weight: 900;
-      letter-spacing: 6px;
-      color: #C5A059;
-      margin-top: 40px;
-      text-align: center;
-      text-transform: uppercase;
+      margin-top: 20px;
     }
 
-    /* SCENE 3: QUOTE (17.5s - 30.0s) */
-    #scene-3 .quote-wrapper {
+    /* Scene 3: Quote */
+    .quote-box {
       border-left: 5px solid #C5A059;
       padding-left: 45px;
       margin: 0 20px;
+      background: rgba(7, 7, 6, 0.6);
+      backdrop-filter: blur(8px);
+      padding-top: 20px;
+      padding-bottom: 20px;
     }
-    #scene-3 .quote-text {
+    .quote-text {
       font-family: 'Cinzel', serif;
-      font-size: 58px;
+      font-size: 54px;
       font-style: italic;
       font-weight: 700;
       line-height: 1.38;
       color: #EAE5DC;
-      letter-spacing: 1px;
     }
-    #scene-3 .quote-author {
+    .quote-author {
       font-family: 'Space Mono', monospace;
-      font-size: 26px;
+      font-size: 24px;
       letter-spacing: 5px;
       color: #C5A059;
-      margin-top: 40px;
+      margin-top: 35px;
       text-transform: uppercase;
     }
 
-    /* SCENE 4: BEAT 3 (30.0s - 49.0s) */
-    #scene-4 .snap-lead {
-      font-family: 'Cinzel', serif;
-      font-size: 78px;
-      font-weight: 900;
+    /* Scene 5: Outro Verdict Box */
+    .verdict-box {
+      border: 6px solid #C5A059;
+      padding: 50px 70px;
+      background: rgba(7, 7, 6, 0.92);
+      box-shadow: 0 0 100px rgba(197, 160, 89, 0.35);
       text-align: center;
-      line-height: 1.15;
-      text-transform: uppercase;
     }
-    #scene-4 .snap-danger {
+    .verdict-title {
       font-family: 'Cinzel', serif;
       font-size: 96px;
       font-weight: 900;
-      color: #8F1D1D;
-      text-align: center;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      text-shadow: 0 0 60px rgba(143, 29, 29, 0.6);
-    }
-    #scene-4 .easy-box {
-      background: rgba(143, 29, 29, 0.1);
-      border: 2px solid rgba(143, 29, 29, 0.45);
-      border-radius: 20px;
-      padding: 35px 50px;
-      margin-top: 40px;
-      text-align: center;
-    }
-    #scene-4 .easy-list {
-      font-family: 'Space Mono', monospace;
-      font-size: 28px;
-      letter-spacing: 3px;
-      color: rgba(234, 229, 220, 0.85);
-      line-height: 1.8;
-      text-transform: uppercase;
-    }
-
-    /* SCENE 5: CLOSE / UNTOUCHABLE (49.0s - 65.0s) */
-    #scene-5 .verdict-badge {
-      font-family: 'Space Mono', monospace;
-      font-size: 22px;
-      font-weight: 700;
-      letter-spacing: 8px;
-      color: #C5A059;
-      margin-bottom: 30px;
-      text-transform: uppercase;
-    }
-    #scene-5 .untouchable-box {
-      border: 6px solid #C5A059;
-      padding: 50px 70px;
-      background: rgba(7, 7, 6, 0.95);
-      box-shadow: 0 0 100px rgba(197, 160, 89, 0.35);
-      text-align: center;
-      position: relative;
-    }
-    #scene-5 .cold-quote {
-      font-family: 'Cinzel', serif;
-      font-size: 64px;
-      font-weight: 900;
-      line-height: 1.25;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-bottom: 25px;
-    }
-    #scene-5 .stamp-title {
-      font-family: 'Cinzel', serif;
-      font-size: 92px;
-      font-weight: 900;
       letter-spacing: 8px;
       color: #C5A059;
       text-transform: uppercase;
-      text-shadow: 0 0 60px rgba(197, 160, 89, 0.7);
-    }
-    #scene-5 .close-sub {
-      font-family: 'Space Mono', monospace;
-      font-size: 24px;
-      letter-spacing: 6px;
-      color: rgba(234, 229, 220, 0.5);
-      margin-top: 40px;
-      text-transform: uppercase;
+      text-shadow: 0 0 60px rgba(197, 160, 89, 0.8);
     }
   </style>
 </head>
 <body>
 
   <div id="stage" data-composition-id="video-004-anger" data-start="0" data-width="1080" data-height="1920">
-    <div class="ambient-glow" id="glow"></div>
     <div class="accent-bar"></div>
     <div class="vignette"></div>
     <div class="film-grain"></div>
 
-    <!-- HUD Chrome -->
+    <!-- HUD Header -->
     <div class="hud tl">
       <div class="hud-dot"></div>
-      <span>ARCHIVAL DOSSIER // 170 AD</span>
+      <span>MARCUS AURELIUS // MEDITATIONS</span>
     </div>
-    <div class="hud tr">LAW // 04</div>
-    <div class="hud bl">REF. STOIC-ANGER-DEFENSE</div>
-    <div class="hud br">JUNG CASEN</div>
+    <div class="hud tr">LAW 04</div>
 
-    <!-- SCENE 1: HOOK (0s - 4.8s) -->
-    <div class="scene" id="scene-1">
-      <div class="kicker">BRUTAL TRUTH</div>
-      <h1 class="title-hook">EVERY TIME YOU<br>LOSE YOUR TEMPER…</h1>
+    <!-- 1. B-ROLL VISUAL BACKGROUND LAYERS -->
+    <!-- B-Roll 1: Marcus Aurelius Statue (Hook & Beat 1: 0s - 20.5s) -->
+    <div class="broll-layer" id="broll-statue">
+      <img class="broll-img" src="marcus_statue.jpg" alt="Marcus Aurelius Statue" />
+    </div>
+
+    <!-- B-Roll 2: Roman Colosseum Ruins (Quote: 20.5s - 34.5s) -->
+    <div class="broll-layer" id="broll-ruins">
+      <img class="broll-img" src="scene_rule1.jpg" alt="Roman Ruins" />
+    </div>
+
+    <!-- B-Roll 3: Dark Shadows & Chaos (Beat 3 Trap: 34.5s - 55.5s) -->
+    <div class="broll-layer" id="broll-shadows">
+      <img class="broll-img" src="scene_rule3.jpg" alt="Dark Stoic Aesthetic" />
+    </div>
+
+    <!-- B-Roll 4: Stoic Bronze Shield & Fortress (Close: 55.5s - 66.5s) -->
+    <div class="broll-layer" id="broll-fortress">
+      <img class="broll-img" src="scene_hook.jpg" alt="Stoic Citadel" />
+    </div>
+
+    <!-- 2. SCENE FOREGROUND CONTENT (KINETIC TEXT & SVG) -->
+
+    <!-- SCENE 1: HOOK (0.0s - 6.0s) -->
+    <div class="scene-content" id="scene-hook">
+      <h1 class="headline-main">EVERY TIME YOU<br>LOSE YOUR TEMPER…</h1>
       <div class="divider red"></div>
-      <div class="punch-hook">YOU LOSE.</div>
+      <div class="headline-danger">YOU LOSE.</div>
     </div>
 
-    <!-- SCENE 2: BEAT 1 (4.8s - 17.5s) -->
-    <div class="scene" id="scene-2">
-      <div class="roman-badge">THE ROMAN EMPEROR</div>
-      <h1 class="emperor-title">MARCUS AURELIUS<br>RULED THE WORLD.</h1>
+    <!-- SCENE 2: BEAT 1 - EMPEROR (6.0s - 20.5s) -->
+    <div class="scene-content" id="scene-emperor">
+      <h1 class="headline-main">RULED THE GREATEST<br>EMPIRE ON EARTH.</h1>
       <div class="divider"></div>
-      <p class="emperor-sub">BETRAYED. MOCKED. TESTED.<br>HE NEVER LOST CONTROL.</p>
-      <div class="truth-tag">NOT ONCE.</div>
+      <p class="subtext">BETRAYED. MOCKED. TESTED.<br>HE NEVER LOST CONTROL.</p>
+      <div class="headline-main gold" style="font-size: 64px; margin-top: 30px;">NOT ONCE.</div>
     </div>
 
-    <!-- SCENE 3: QUOTE (17.5s - 30.0s) -->
-    <div class="scene" id="scene-3">
-      <div class="kicker">MEDITATIONS // BOOK XI</div>
-      <div class="quote-wrapper">
+    <!-- SCENE 3: QUOTE (20.5s - 34.5s) -->
+    <div class="scene-content" id="scene-quote">
+      <div class="quote-box">
         <p class="quote-text">
           "How much more harmful are the consequences of anger… than the circumstances that aroused them."
         </p>
@@ -374,38 +289,50 @@
       </div>
     </div>
 
-    <!-- SCENE 4: BEAT 3 (30.0s - 49.0s) -->
-    <div class="scene" id="scene-4">
-      <div class="kicker">THE PSYCHOLOGICAL TRAP</div>
-      <h1 class="snap-lead">THE MOMENT YOU SNAP—</h1>
-      <div class="snap-danger">YOU HAND OVER<br>YOUR POWER.</div>
-      <div class="divider red"></div>
-      <div class="easy-box">
-        <p class="easy-list">
-          ANGER DOESN'T MAKE YOU STRONG.<br>
-          IT MAKES YOU <span class="crimson" style="font-weight:900;">EASY.</span><br>
-          <span style="font-size:22px; color:#C5A059;">EASY TO MANIPULATE · PREDICT · BREAK</span>
-        </p>
+    <!-- SCENE 4: BEAT 3 - THE TRAP & SVG PUPPET (34.5s - 55.5s) -->
+    <div class="scene-content" id="scene-trap">
+      <h1 class="headline-main">THE MOMENT YOU SNAP—</h1>
+      <div class="headline-danger" style="font-size: 82px;">YOU HAND OVER<br>YOUR POWER.</div>
+      
+      <!-- Kinetic SVG: Broken Puppet Strings / Scales of Power -->
+      <div class="svg-container">
+        <svg width="260" height="260" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="100" cy="100" r="85" stroke="#C5A059" stroke-width="3" stroke-dasharray="6 6" opacity="0.6"/>
+          <!-- Scale beam tilting -->
+          <line id="scale-beam" x1="40" y1="100" x2="160" y2="100" stroke="#8F1D1D" stroke-width="6" stroke-linecap="round"/>
+          <circle cx="100" cy="100" r="10" fill="#C5A059"/>
+          <!-- Suspended weights -->
+          <line id="weight-l" x1="40" y1="100" x2="40" y2="140" stroke="#EAE5DC" stroke-width="2"/>
+          <line id="weight-r" x1="160" y1="100" x2="160" y2="140" stroke="#EAE5DC" stroke-width="2"/>
+          <rect id="pan-l" x="25" y="140" width="30" height="10" rx="3" fill="#8F1D1D"/>
+          <rect id="pan-r" x="145" y="140" width="30" height="10" rx="3" fill="#C5A059"/>
+        </svg>
       </div>
+
+      <p class="subtext" style="color: #EAE5DC; font-weight: 700;">
+        ANGER DOESN'T MAKE YOU STRONG.<br>
+        <span style="color: #8F1D1D; font-size: 34px;">IT MAKES YOU EASY.</span>
+      </p>
     </div>
 
-    <!-- SCENE 5: CLOSE / UNTOUCHABLE (49.0s - 65.0s) -->
-    <div class="scene" id="scene-5">
-      <div class="verdict-badge">FINAL DOSSIER VERDICT</div>
-      <div class="untouchable-box">
-        <div class="cold-quote">
+    <!-- SCENE 5: CLOSE / UNTOUCHABLE (55.5s - 66.5s) -->
+    <div class="scene-content" id="scene-close">
+      <div class="verdict-box">
+        <p class="subtext" style="color:#C5A059; margin-top:0; margin-bottom:20px; font-weight:700;">
           STAY COLD WHEN THE WORLD<br>TRIES TO MAKE YOU BURN.
-        </div>
-        <div class="stamp-title">UNTOUCHABLE</div>
+        </p>
+        <div class="verdict-title">UNTOUCHABLE</div>
       </div>
-      <div class="close-sub">SUBSCRIBE FOR STOIC MASTERY ➔</div>
+      <p class="subtext" style="color: rgba(234, 229, 220, 0.6); margin-top: 40px;">
+        THE STOIC WEAPON. USE IT.
+      </p>
     </div>
 
-    <!-- Master Voice Track -->
+    <!-- Master Clean Sequential Audio Track (Duration: 66.46s) -->
     <audio
       id="main-voice"
       data-start="0"
-      data-duration="65"
+      data-duration="66.5"
       data-track-index="0"
       data-volume="1.0"
       src="audio_anger.mp3"
@@ -415,50 +342,71 @@
     <script>
       const tl = gsap.timeline({ paused: true });
 
-      // ============================================
-      // SCENE 1: HOOK (0s - 4.8s)
-      // ============================================
-      tl.to("#scene-1", { opacity: 1, duration: 0.35, ease: "power2.out" }, 0.1);
-      tl.from("#scene-1 .title-hook", { y: 40, opacity: 0, duration: 0.7, ease: "power3.out" }, 0.3);
-      tl.from("#scene-1 .punch-hook", { scale: 0.75, opacity: 0, duration: 0.55, ease: "back.out(2)" }, 2.4);
-      tl.to("#scene-1", { opacity: 0, scale: 0.94, duration: 0.4, ease: "power2.in" }, 4.4);
+      // ====================================================
+      // 1. VISUAL B-ROLL PARALLAX (Continuous Ken Burns Zoom)
+      // ====================================================
+      // B-Roll 1: Marcus Statue (0s -> 20.5s)
+      tl.to("#broll-statue", { opacity: 0.45, duration: 0.8 }, 0);
+      tl.to("#broll-statue .broll-img", { scale: 1.15, duration: 20.5, ease: "none" }, 0);
+      tl.to("#broll-statue", { opacity: 0, duration: 0.8 }, 19.8);
 
-      // ============================================
-      // SCENE 2: BEAT 1 (4.8s - 17.5s)
-      // ============================================
-      tl.to("#scene-2", { opacity: 1, duration: 0.45, ease: "power2.out" }, 4.8);
-      tl.from("#scene-2 .roman-badge", { y: -20, opacity: 0, duration: 0.5, ease: "power2.out" }, 5.0);
-      tl.from("#scene-2 .emperor-title", { y: 35, opacity: 0, duration: 0.7, ease: "power3.out" }, 5.4);
-      tl.from("#scene-2 .emperor-sub", { opacity: 0, duration: 0.8, ease: "power2.out" }, 9.5);
-      tl.from("#scene-2 .truth-tag", { scale: 0.8, opacity: 0, duration: 0.5, ease: "back.out(1.8)" }, 15.0);
-      tl.to("#scene-2", { opacity: 0, scale: 0.95, duration: 0.4, ease: "power2.in" }, 17.0);
+      // B-Roll 2: Roman Ruins (20.5s -> 34.5s)
+      tl.to("#broll-ruins", { opacity: 0.4, duration: 0.8 }, 20.5);
+      tl.to("#broll-ruins .broll-img", { scale: 1.12, duration: 14.0, ease: "none" }, 20.5);
+      tl.to("#broll-ruins", { opacity: 0, duration: 0.8 }, 33.8);
 
-      // ============================================
-      // SCENE 3: QUOTE (17.5s - 30.0s)
-      // ============================================
-      tl.to("#scene-3", { opacity: 1, duration: 0.5, ease: "power2.out" }, 17.5);
-      tl.from("#scene-3 .quote-wrapper", { x: -60, opacity: 0, duration: 0.8, ease: "power3.out" }, 17.8);
-      tl.from("#scene-3 .quote-text", { opacity: 0, duration: 1.2, ease: "power2.inOut" }, 19.5);
-      tl.from("#scene-3 .quote-author", { y: 20, opacity: 0, duration: 0.5, ease: "power2.out" }, 27.0);
-      tl.to("#scene-3", { opacity: 0, scale: 1.05, duration: 0.4, ease: "power2.in" }, 29.5);
+      // B-Roll 3: Dark Shadows & Chaos (34.5s -> 55.5s)
+      tl.to("#broll-shadows", { opacity: 0.4, duration: 0.8 }, 34.5);
+      tl.to("#broll-shadows .broll-img", { scale: 1.15, duration: 21.0, ease: "none" }, 34.5);
+      tl.to("#broll-shadows", { opacity: 0, duration: 0.8 }, 54.8);
 
-      // ============================================
-      // SCENE 4: BEAT 3 (30.0s - 49.0s)
-      // ============================================
-      tl.to("#scene-4", { opacity: 1, duration: 0.45, ease: "power2.out" }, 30.0);
-      tl.from("#scene-4 .snap-lead", { y: 30, opacity: 0, duration: 0.6, ease: "power3.out" }, 30.3);
-      tl.from("#scene-4 .snap-danger", { scale: 0.85, opacity: 0, duration: 0.65, ease: "back.out(1.6)" }, 33.0);
-      tl.from("#scene-4 .easy-box", { y: 40, opacity: 0, duration: 0.7, ease: "power2.out" }, 39.0);
-      tl.to("#scene-4", { opacity: 0, scale: 0.94, duration: 0.45, ease: "power2.in" }, 48.5);
+      // B-Roll 4: Stoic Citadel (55.5s -> 66.5s)
+      tl.to("#broll-fortress", { opacity: 0.45, duration: 0.8 }, 55.5);
+      tl.to("#broll-fortress .broll-img", { scale: 1.1, duration: 11.0, ease: "none" }, 55.5);
 
-      // ============================================
-      // SCENE 5: CLOSE / UNTOUCHABLE (49.0s - 65.0s)
-      // ============================================
-      tl.to("#scene-5", { opacity: 1, duration: 0.5, ease: "power2.out" }, 49.0);
-      tl.from("#scene-5 .verdict-badge", { y: -20, opacity: 0, duration: 0.5, ease: "power2.out" }, 49.3);
-      tl.from("#scene-5 .cold-quote", { y: 30, opacity: 0, duration: 0.7, ease: "power3.out" }, 52.0);
-      tl.from("#scene-5 .stamp-title", { scale: 0.7, opacity: 0, duration: 0.6, ease: "back.out(2.2)" }, 59.5);
-      tl.from("#scene-5 .close-sub", { opacity: 0, duration: 0.8, ease: "power2.out" }, 62.5);
+      // ====================================================
+      // 2. SCENE FOREGROUND SEQUENCING (Zero Overlap Guaranteed)
+      // ====================================================
+
+      // SCENE 1: HOOK (0s -> 5.8s) | Audio: 0.0s - 2.98s, 3.63s - 5.62s
+      tl.to("#scene-hook", { opacity: 1, duration: 0.4 }, 0.1);
+      tl.from("#scene-hook .headline-main", { y: 40, opacity: 0, duration: 0.7, ease: "power3.out" }, 0.2);
+      tl.from("#scene-hook .headline-danger", { scale: 0.75, opacity: 0, duration: 0.5, ease: "back.out(2)" }, 3.5);
+      tl.to("#scene-hook", { opacity: 0, scale: 0.95, duration: 0.4 }, 5.8);
+
+      // SCENE 2: BEAT 1 EMPEROR (6.1s -> 20.2s) | Audio: 6.27s - 10.52s, 11.17s - 16.64s, 17.29s - 20.07s
+      tl.to("#scene-emperor", { opacity: 1, duration: 0.4 }, 6.1);
+      tl.from("#scene-emperor .headline-main", { y: 35, opacity: 0, duration: 0.7, ease: "power3.out" }, 6.3);
+      tl.from("#scene-emperor .subtext", { opacity: 0, duration: 0.8 }, 11.0);
+      tl.from("#scene-emperor .gold", { scale: 0.8, opacity: 0, duration: 0.5, ease: "back.out(1.8)" }, 17.2);
+      tl.to("#scene-emperor", { opacity: 0, scale: 0.95, duration: 0.4 }, 20.2);
+
+      // SCENE 3: QUOTE (20.5s -> 34.0s) | Audio: 20.72s - 22.38s, 23.03s - 31.06s, 31.71s - 33.32s
+      tl.to("#scene-quote", { opacity: 1, duration: 0.5 }, 20.5);
+      tl.from("#scene-quote .quote-box", { x: -60, opacity: 0, duration: 0.8, ease: "power3.out" }, 20.7);
+      tl.from("#scene-quote .quote-author", { y: 20, opacity: 0, duration: 0.5 }, 31.5);
+      tl.to("#scene-quote", { opacity: 0, scale: 1.05, duration: 0.4 }, 34.0);
+
+      // SCENE 4: BEAT 3 TRAP & SVG ANIMATION (34.5s -> 55.0s)
+      tl.to("#scene-trap", { opacity: 1, duration: 0.4 }, 34.5);
+      tl.from("#scene-trap .headline-main", { y: 30, opacity: 0, duration: 0.6, ease: "power3.out" }, 34.7);
+      tl.from("#scene-trap .headline-danger", { scale: 0.85, opacity: 0, duration: 0.6, ease: "back.out(1.6)" }, 37.0);
+
+      // Animate SVG balance scale tilt (simulating loss of control/power)
+      tl.to("#scale-beam", { rotation: 25, transformOrigin: "100px 100px", duration: 1.2, ease: "power2.inOut" }, 37.5);
+      tl.to("#weight-l", { y: -15, duration: 1.2, ease: "power2.inOut" }, 37.5);
+      tl.to("#pan-l", { y: -15, duration: 1.2, ease: "power2.inOut" }, 37.5);
+      tl.to("#weight-r", { y: 15, duration: 1.2, ease: "power2.inOut" }, 37.5);
+      tl.to("#pan-r", { y: 15, duration: 1.2, ease: "power2.inOut" }, 37.5);
+
+      tl.from("#scene-trap .subtext", { y: 30, opacity: 0, duration: 0.7 }, 45.0);
+      tl.to("#scene-trap", { opacity: 0, scale: 0.95, duration: 0.4 }, 55.0);
+
+      // SCENE 5: CLOSE / UNTOUCHABLE (55.5s -> 66.5s)
+      tl.to("#scene-close", { opacity: 1, duration: 0.5 }, 55.5);
+      tl.from("#scene-close .verdict-box", { scale: 0.8, opacity: 0, duration: 0.7, ease: "power3.out" }, 55.8);
+      tl.from("#scene-close .verdict-title", { scale: 0.7, opacity: 0, duration: 0.6, ease: "back.out(2.2)" }, 62.0);
+      tl.from("#scene-close .subtext:last-child", { opacity: 0, duration: 0.8 }, 64.0);
 
       window.__timelines = window.__timelines || {};
       window.__timelines["video-004-anger"] = tl;
